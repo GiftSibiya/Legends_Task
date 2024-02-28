@@ -1,8 +1,8 @@
-import usermodel from "../models/User.js";
+import taskModel from "../models/User.js";
 const create = async (req, res) => {
   try {
     const { taskName, taskDesc, taskStatus, taskDue } = req.body;
-    const Newuser = new usermodel({
+    const Newuser = new taskModel({
       taskName,
       taskDesc,
       taskStatus,
@@ -24,7 +24,7 @@ const create = async (req, res) => {
 ///////Read api
 const get = async (req, res) => {
   try {
-    const users = await usermodel.find();
+    const users = await taskModel.find();
     if (!users) {
       return res.status(404).json({ success: false });
     }
@@ -42,7 +42,7 @@ const Updated = async (req, res) => {
   try {
     const userId = req.params.id;
 
-    const updateuser = await usermodel.findByIdAndUpdate(userId, req.body, {
+    const updateuser = await taskModel.findByIdAndUpdate(userId, req.body, {
       new: true,
     });
     if (!updateuser) {
@@ -65,7 +65,7 @@ const Updated = async (req, res) => {
 const Delete = async (req, res) => {
   try {
     const userId = req.params.id;
-    const deletuser = await usermodel.findByIdAndDelete(userId);
+    const deletuser = await taskModel.findByIdAndDelete(userId);
     if (!deletuser) {
       return res
         .status(404)

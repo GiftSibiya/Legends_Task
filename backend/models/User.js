@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
+const taskSchema = new mongoose.Schema(
   {
     taskName: {
       type: String,
@@ -22,6 +22,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const usermodel = mongoose.model("user", userSchema);
+const taskModel = mongoose.model("user", taskSchema);
 
-export default usermodel;
+export default taskModel;
