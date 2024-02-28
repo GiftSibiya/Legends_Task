@@ -6,7 +6,7 @@ import DeleteTask from "../Component/DeleteTask";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export default function UserTable() {
+export default function TaskTable() {
   const [userId, setUserId] = useState();
   const [updatedTaskId, setUpdatedTaskId] = useState();
   console.log(updatedTaskId);
