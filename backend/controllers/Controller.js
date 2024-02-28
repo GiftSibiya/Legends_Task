@@ -24,12 +24,12 @@ const create = async (req, res) => {
 /// GET TASKS ///
 const get = async (req, res) => {
   try {
-    const users = await taskModel.find();
-    if (!users) {
+    const tasks = await taskModel.find();
+    if (!tasks) {
       return res.status(404).json({ success: false });
     }
 
-    res.status(200).json({ users });
+    res.status(200).json({ tasks });
   } catch (error) {
     console.log(error);
 

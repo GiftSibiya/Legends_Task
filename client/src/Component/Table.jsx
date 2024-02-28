@@ -72,14 +72,14 @@ export default function Table({ DeleteTask, UpdatedTask }) {
               </tr>
             </thead>
             <tbody>
-              {data.users?.map((elem, index) => {
+              {data.tasks?.map((elem, index) => {
                 return (
                   <tr key={index}>
                     <td></td>
                     <td>{elem.taskName}</td>
                     <td>{elem.taskDesc}</td>
                     <td>{elem.taskStatus}</td>
-                    <td>{elem.taskDue}</td>
+                    <td>{new Date(elem.taskDue).toLocaleDateString()}</td>
                     <td>
                       <a
                         href="#"
