@@ -1,0 +1,86 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.main--container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 400px;
+  border: 1px solid grey;
+}
+.con--head {
+  height: 15%;
+  margin: 10px 30px;
+  color: black;
+}
+.con--form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 48%;
+}
+.label--con {
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-content: center;
+}
+.lables {
+  position: relative;
+  top: 15px;
+  width: 50px;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}
+.Login--input {
+  width: 85%;
+  height: 40px;
+}
+
+.pass {
+  display: flex;
+  position: relative;
+  top: 15px;
+  width: 85%;
+  align-content: center;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}
+.con--btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 25%;
+}
+.con--signIn {
+  display: flex;
+  justify-content: center;
+  height: 10%;
+}
+.sign--text {
+  display: flex;
+  text-align: center;
+}
+.btn--black {
+  height: 45px;
+  border: none;
+  background-color: black;
+  width: 85%;
+  color: white;
+  border-radius: 5px;
+}
+.btn--white {
+  height: 45px;
+  border: 1px solid grey;
+  width: 85%;
+  margin-top: 15px;
+  border-radius: 5px;
+}
