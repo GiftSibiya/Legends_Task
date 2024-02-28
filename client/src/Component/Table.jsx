@@ -10,11 +10,9 @@ export default function Table({ DeleteTask, UpdatedTask }) {
   useEffect(() => {
     async function FeatchData() {
       try {
-        const user = await axios.get("http://localhost:4000/api/get");
-        const response = user.data;
-        // console.log(response.users)
+        const task = await axios.get("http://localhost:4000/api/get");
+        const response = task.data;
         setData(response);
-        // console.log(response.data.users.etaskStatus, 'taskStatus')
       } catch (error) {
         console.log(error);
       }

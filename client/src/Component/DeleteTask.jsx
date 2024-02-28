@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-export default function DeleteTask({ handleUserDelet }) {
+export default function DeleteTask({ handleTaskDelete }) {
   return (
     <>
       <div id="deleteEmployeeModal" className="modal fade">
@@ -29,7 +29,7 @@ export default function DeleteTask({ handleUserDelet }) {
                   className="btn btn-danger"
                   value="Delete"
                   data-bs-dismiss="modal"
-                  onClick={handleUserDelet}
+                  onClick={handleTaskDelete}
                 />
               </div>
             </form>

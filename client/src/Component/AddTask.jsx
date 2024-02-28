@@ -21,11 +21,11 @@ export default function AddTask() {
     e.preventDefault();
 
     try {
-      const adduser = await axios.post(
+      const addTask = await axios.post(
         "http://localhost:4000/api/create",
         value
       );
-      const response = adduser.data;
+      const response = addTask.data;
       if (response.success) {
         toast.success(response.Message);
         CloseRef.current.click();
