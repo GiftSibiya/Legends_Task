@@ -2,17 +2,17 @@ import taskModel from "../models/TaskModel.js";
 const create = async (req, res) => {
   try {
     const { taskName, taskDesc, taskStatus, taskDue } = req.body;
-    const Newuser = new taskModel({
+    const NewTask = new taskModel({
       taskName,
       taskDesc,
       taskStatus,
       taskDue,
     });
-    await Newuser.save();
+    await NewTask.save();
 
     res
       .status(200)
-      .json({ success: true, message: "User Created Successfully.", Newuser });
+      .json({ success: true, message: "Task Created Successfully.", NewTask });
   } catch (error) {
     console.log(error);
     return res
@@ -21,7 +21,7 @@ const create = async (req, res) => {
   }
 };
 
-///////Read api
+/// GET TASKS ///
 const get = async (req, res) => {
   try {
     const users = await taskModel.find();
@@ -37,23 +37,23 @@ const get = async (req, res) => {
   }
 };
 
-////////update user api
+/// UPDATE TASK ///
 const Updated = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const taskId = req.params.id;
 
-    const updateuser = await taskModel.findByIdAndUpdate(userId, req.body, {
+    const updateTask = await taskModel.findByIdAndUpdate(taskId, req.body, {
       new: true,
     });
-    if (!updateuser) {
+    if (!updateTask) {
       return res
         .status(404)
-        .json({ success: false, message: "User not found" });
+        .json({ success: false, message: "Task not found" });
     }
     res.status(200).json({
       success: true,
-      message: "User updated successfully",
-      updateuser,
+      message: "Task updated successfully",
+      updateTask,
     });
   } catch (error) {
     console.log(error);
@@ -61,19 +61,19 @@ const Updated = async (req, res) => {
   }
 };
 
-// delet user ap
+// DELETE TASK
 const Delete = async (req, res) => {
   try {
-    const userId = req.params.id;
-    const deletuser = await taskModel.findByIdAndDelete(userId);
-    if (!deletuser) {
+    const taskId = req.params.id;
+    const deleteTask = await taskModel.findByIdAndDelete(taskId);
+    if (!deleteTask) {
       return res
         .status(404)
-        .json({ success: false, message: "user Not found" });
+        .json({ success: false, message: "Task Not found" });
     }
     res
       .status(200)
-      .json({ success: true, message: "user Deleted successfully" });
+      .json({ success: true, message: "Task Deleted successfully" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Internal server error" });
