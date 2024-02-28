@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export default function AddUser() {
+export default function AddTask() {
   const [value, setValue] = useState({
     taskName: "",
     taskDesc: "",

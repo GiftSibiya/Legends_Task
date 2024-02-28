@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Table from "../Component/Table";
-import AddUser from "../Component/AddUser";
+import AddTask from "../Component/AddTask";
 import UpdatedUser from "../Component/UpdatedUser";
 import DeletUser from "../Component/DeletUser";
 import axios from "axios";
@@ -66,7 +66,7 @@ export default function UserTable() {
     <>
       <Table Deletuser={deletuser} UpdatedUser={UpadteUserData}></Table>
 
-      <AddUser></AddUser>
+      <AddTask></AddTask>
       <UpdatedUser
         handleOnSubmit={handleOnSubmit}
         value={value}
