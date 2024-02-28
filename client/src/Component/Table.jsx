@@ -1,4 +1,7 @@
 import axios from "axios";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+
 import React, { useEffect, useState } from "react";
 
 export default function Table({ Deletuser, UpdatedUser }) {
@@ -19,10 +22,26 @@ export default function Table({ Deletuser, UpdatedUser }) {
     FeatchData();
   }, [data]);
 
+  const exportToPDF = () => {
+    const input = document.getElementById("table-container");
+
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, "PNG", 0, 0);
+      pdf.save("table-export.pdf");
+    });
+  };
+
   return (
     <>
       <div className="container">
-        <div className="table-wrapper">
+        <div className="col-sm-6">
+          <button className="btn btn-primary" onClick={exportToPDF}>
+            Export to PDF
+          </button>
+        </div>
+        <div id="table-container" className="table-wrapper">
           <div className="table-title">
             <div className="row">
               <div className="col-sm-6">
