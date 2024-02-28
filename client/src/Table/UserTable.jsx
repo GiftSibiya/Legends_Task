@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import Table from "../Component/Table";
 import AddTask from "../Component/AddTask";
-import UpdatedUser from "../Component/UpdatedUser";
+import UpdatedTask from "../Component/UpdatedTask";
 import DeletUser from "../Component/DeletUser";
 import axios from "axios";
 import toast from "react-hot-toast";
 
 export default function UserTable() {
   const [userId, setUserId] = useState();
-  const [updatedUserId, setUpdatedUserId] = useState();
-  console.log(updatedUserId);
+  const [updatedTaskId, setUpdatedTaskId] = useState();
+  console.log(updatedTaskId);
   const [value, setValue] = useState({
     taskName: "",
     taskDesc: "",
@@ -41,17 +41,17 @@ export default function UserTable() {
   };
 
   const UpadteUserData = (Updatedid) => {
-    setUpdatedUserId(Updatedid);
+    setUpdatedTaskId(Updatedid);
   };
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const UpdatedUser = await axios.put(
-        `http://localhost:4000/api/update/${updatedUserId}`,
+      const UpdatedTask = await axios.put(
+        `http://localhost:4000/api/update/${updatedTaskId}`,
         value
       );
-      const response = UpdatedUser.data;
+      const response = UpdatedTask.data;
 
       if (response.success) {
         toast.success(response.message);
@@ -64,14 +64,14 @@ export default function UserTable() {
   };
   return (
     <>
-      <Table Deletuser={deletuser} UpdatedUser={UpadteUserData}></Table>
+      <Table Deletuser={deletuser} UpdatedTask={UpadteUserData}></Table>
 
       <AddTask></AddTask>
-      <UpdatedUser
+      <UpdatedTask
         handleOnSubmit={handleOnSubmit}
         value={value}
         handlechange={handlechange}
-      ></UpdatedUser>
+      ></UpdatedTask>
       <DeletUser handleUserDelet={handleUserDelet}></DeletUser>
     </>
   );

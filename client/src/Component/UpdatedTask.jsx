@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function UpdatedUser({ handleOnSubmit, value, handlechange }) {
+export default function UpdatedTask({ handleOnSubmit, value, handlechange }) {
   return (
     <>
       <div id="editEmployeeModal" className="modal fade">
@@ -53,7 +53,7 @@ export default function UpdatedUser({ handleOnSubmit, value, handlechange }) {
                   <label>Due Date</label>
 
                   <input
-                    type="text"
+                    type="Date"
                     value={value.taskDue}
                     name="taskDue"
                     onChange={handlechange}

@@ -4,7 +4,7 @@ import html2canvas from "html2canvas";
 
 import React, { useEffect, useState } from "react";
 
-export default function Table({ Deletuser, UpdatedUser }) {
+export default function Table({ Deletuser, UpdatedTask }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export default function Table({ Deletuser, UpdatedUser }) {
                         className="edit cursor-pointer"
                         data-bs-toggle="modal"
                         data-bs-target="#editEmployeeModal"
-                        onClick={() => UpdatedUser(elem._id)}
+                        onClick={() => UpdatedTask(elem._id)}
                       >
                         <i
                           className="material-icons"
