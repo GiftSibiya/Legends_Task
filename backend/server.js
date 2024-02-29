@@ -7,8 +7,8 @@ import routers from "./routes/routes.js";
 import dbCon from "./utlis/db.js";
 
 ///--///
-app.use(express.json());
 const app = express();
+app.use(express.json());
 dotenv.config();
 app.use(cors());
 dbCon();
