@@ -6,9 +6,11 @@ import taskModel from "../models/TaskModel.js";
 
 //--//
 
+/////------ TASKS CONTROLLER ------/////
+
 /// CREATE TASKS ///
 
-const create = async (req, res) => {
+const CreateTask = async (req, res) => {
   try {
     const { taskName, taskDesc, taskStatus, taskDue } = req.body;
     const NewTask = new taskModel({
@@ -31,7 +33,7 @@ const create = async (req, res) => {
 };
 
 /// GET TASKS ///
-const get = async (req, res) => {
+const GetTask = async (req, res) => {
   try {
     const tasks = await taskModel.find();
     if (!tasks) {
@@ -49,7 +51,7 @@ const get = async (req, res) => {
 };
 
 /// UPDATE TASK ///
-const Updated = async (req, res) => {
+const UpdateTask = async (req, res) => {
   try {
     const taskId = req.params.id;
 
@@ -72,8 +74,8 @@ const Updated = async (req, res) => {
   }
 };
 
-// DELETE TASK
-const Delete = async (req, res) => {
+/// DELETE TASK ///
+const DeleteTask = async (req, res) => {
   try {
     const taskId = req.params.id;
     const deleteTask = await taskModel.findByIdAndDelete(taskId);
@@ -91,8 +93,35 @@ const Delete = async (req, res) => {
   }
 };
 
-/// GET USERS ///
-const getUser = async (req, res) => {
-  res.json({ message: "You found the lion honey bruv" });
+/////------ USER CONTROLLER ------/////
+
+/// CREATE USER ///
+const CreateUser = async (req, res) => {
+  res.json({ message: "You just birhted a new user" });
 };
-export { create, get, Updated, Delete, getUser };
+
+/// GET USERS ///
+const GetUser = async (req, res) => {
+  res.json({ message: "You found the lionbruv" });
+};
+
+/// UPDATE USER ////
+const UpdateUser = async (req, res) => {
+  res.json({ message: "You Just updated the user" });
+};
+/// DELETE USER ////
+const DeleteUser = async (req, res) => {
+  res.json({ message: "The user is gone " });
+};
+
+///-- EXPORTS --///
+export {
+  CreateTask,
+  GetTask,
+  UpdateTask,
+  DeleteTask,
+  CreateUser,
+  GetUser,
+  UpdateUser,
+  DeleteUser,
+};

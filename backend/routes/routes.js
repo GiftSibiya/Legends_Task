@@ -1,23 +1,29 @@
 /// IMPORT DEPENDENCIES ///
 import express from "express";
 import {
-  create,
-  get,
-  Updated,
-  Delete,
-  getUser,
+  CreateTask,
+  GetTask,
+  UpdateTask,
+  DeleteTask,
+  CreateUser,
+  GetUser,
+  UpdateUser,
+  DeleteUser,
 } from "../controllers/Controller.js";
 /// -- ///
 
 const routers = express.Router();
 
 /// TASK ROUTES
-routers.post("/create", create);
-routers.get("/get", get);
-routers.put("/update/:id", Updated);
-routers.delete("/delete/:id", Delete);
+routers.post("/create", CreateTask);
+routers.get("/get", GetTask);
+routers.put("/update/:id", UpdateTask);
+routers.delete("/delete/:id", DeleteTask);
 
 /// USER ROUTES
-routers.get("/user", getUser);
+routers.post("/CreateUser", CreateUser);
+routers.get("/GetUser", GetUser);
+routers.put("/UpdateUser", UpdateUser);
+routers.delete("/DeleteUser", DeleteUser);
 
 export default routers;
