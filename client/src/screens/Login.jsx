@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
+import axios from "axios";
+
 import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
@@ -15,8 +17,9 @@ function Login() {
     e.preventDefault();
 
     try {
-      await axios.post("http/reg"),
+      await axios.post("http://localhost:4000/api/CreateUser"),
         {
+          fullname,
           email,
           password,
         };

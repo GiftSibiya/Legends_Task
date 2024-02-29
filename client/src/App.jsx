@@ -7,6 +7,7 @@ import TaskTable from "./Table/TaskTable";
 
 import { Toaster } from "react-hot-toast";
 import Login from "./screens/Login";
+import SignUp from "./screens/SignUp";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/signUp" element={<SignUp />} />
           <Route path="/home" element={<TaskTable />} />
         </Routes>
       </BrowserRouter>
