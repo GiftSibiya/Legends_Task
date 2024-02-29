@@ -1,4 +1,13 @@
+//These are the routes that will be sent to our routes.js file for
+//task creation.
+
+/// IMPORTS ///
 import taskModel from "../models/TaskModel.js";
+
+//--//
+
+/// CREATE TASKS ///
+
 const create = async (req, res) => {
   try {
     const { taskName, taskDesc, taskStatus, taskDue } = req.body;
@@ -17,7 +26,7 @@ const create = async (req, res) => {
     console.log(error);
     return res
       .status(500)
-      .json({ success: false, message: "Interl server eror" });
+      .json({ success: false, message: "Interl server error" });
   }
 };
 
@@ -26,7 +35,9 @@ const get = async (req, res) => {
   try {
     const tasks = await taskModel.find();
     if (!tasks) {
-      return res.status(404).json({ success: false });
+      return res
+        .status(404)
+        .json({ success: false, message: "No tasks could be found." });
     }
 
     res.status(200).json({ tasks });
@@ -80,4 +91,8 @@ const Delete = async (req, res) => {
   }
 };
 
-export { create, get, Updated, Delete };
+/// GET USERS ///
+const getUser = async (req, res) => {
+  res.json({ message: "You found the lion honey bruv" });
+};
+export { create, get, Updated, Delete, getUser };
