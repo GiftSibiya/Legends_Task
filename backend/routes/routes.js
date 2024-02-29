@@ -14,13 +14,13 @@ import {
 
 const routers = express.Router();
 
-/// TASK ROUTES
+/// TASK ROUTES ///
 routers.post("/create", CreateTask);
 routers.get("/get", GetTask);
 routers.put("/update/:id", UpdateTask);
 routers.delete("/delete/:id", DeleteTask);
 
-/// USER ROUTES
+/// USER ROUTES ///
 routers.post("/CreateUser", CreateUser);
 routers.get("/GetUser", GetUser);
 routers.put("/UpdateUser", UpdateUser);

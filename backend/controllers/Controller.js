@@ -3,7 +3,7 @@
 
 /// IMPORTS ///
 import taskModel from "../models/TaskModel.js";
-
+import UserModel from "../models/UserModel.js";
 //--//
 
 /////------ TASKS CONTROLLER ------/////
@@ -97,7 +97,24 @@ const DeleteTask = async (req, res) => {
 
 /// CREATE USER ///
 const CreateUser = async (req, res) => {
-  res.json({ message: "You just birhted a new user" });
+  try {
+    const { fullname, email, password } = req.body;
+    const NewUser = new UserModel({
+      fullname,
+      email,
+      password,
+    });
+    await NewUser.save();
+
+    res
+      .status(200)
+      .json({ success: true, message: "User Created Successfully.", NewUser });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Interl server error" });
+  }
 };
 
 /// GET USERS ///
