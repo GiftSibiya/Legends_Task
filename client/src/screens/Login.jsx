@@ -10,6 +10,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passMatch, setPassMatch] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   /// FUNCTIONS ///
   async function checkUserExists(email, password) {
@@ -70,13 +71,20 @@ function Login() {
             <p>Forgot Your Password</p>
           </div>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             className="Login--input"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
           ></input>
+          <label>
+            <input
+              type="checkbox"
+              onChange={() => setShowPassword(!showPassword)}
+            />
+            Show Password
+          </label>
         </form>
         {/* -- */}
 
