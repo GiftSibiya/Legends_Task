@@ -1,0 +1,16 @@
+.task--header {
+  font-size: 20px;
+}
+.task--add__btn {
+  padding: 12px;
+  height: 100px;
+  width: 200px;
+  border-radius: 5px;
+  background-color: black;
+  text-decoration: none;
+}
+.task--add__txt {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
