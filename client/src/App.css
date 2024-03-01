@@ -87,7 +87,11 @@ table.table td a:hover {
   color: #2196f3;
 }
 table.table td a.edit {
+<<<<<<< HEAD
   color: #ffc107;
+=======
+  color: grey;
+>>>>>>> 96d229254f4c839237981d89c8574bb6c8f28baf
 }
 table.table td a.delete {
   color: #f44336;

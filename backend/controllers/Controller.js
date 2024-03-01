@@ -3,12 +3,14 @@
 
 /// IMPORTS ///
 import taskModel from "../models/TaskModel.js";
-
+import UserModel from "../models/UserModel.js";
 //--//
+
+/////------ TASKS CONTROLLER ------/////
 
 /// CREATE TASKS ///
 
-const create = async (req, res) => {
+const CreateTask = async (req, res) => {
   try {
     const { taskName, taskDesc, taskStatus, taskDue } = req.body;
     const NewTask = new taskModel({
@@ -31,7 +33,7 @@ const create = async (req, res) => {
 };
 
 /// GET TASKS ///
-const get = async (req, res) => {
+const GetTask = async (req, res) => {
   try {
     const tasks = await taskModel.find();
     if (!tasks) {
@@ -49,7 +51,7 @@ const get = async (req, res) => {
 };
 
 /// UPDATE TASK ///
-const Updated = async (req, res) => {
+const UpdateTask = async (req, res) => {
   try {
     const taskId = req.params.id;
 
@@ -72,8 +74,8 @@ const Updated = async (req, res) => {
   }
 };
 
-// DELETE TASK
-const Delete = async (req, res) => {
+/// DELETE TASK ///
+const DeleteTask = async (req, res) => {
   try {
     const taskId = req.params.id;
     const deleteTask = await taskModel.findByIdAndDelete(taskId);
@@ -91,8 +93,83 @@ const Delete = async (req, res) => {
   }
 };
 
-/// GET USERS ///
-const getUser = async (req, res) => {
-  res.json({ message: "You found the lion honey bruv" });
+/////------ USER CONTROLLER ------/////
+
+/// CREATE USER ///
+const CreateUser = async (req, res) => {
+  try {
+    const { fullname, email, password } = req.body;
+    const NewUser = new UserModel({
+      fullname,
+      email,
+      password,
+    });
+    await NewUser.save();
+
+    res
+      .status(200)
+      .json({ success: true, message: "User Created Successfully.", NewUser });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Interl server error" });
+  }
 };
-export { create, get, Updated, Delete, getUser };
+
+/// GET USERS ///
+const GetUser = async (req, res) => {
+  const { email } = req.body;
+  console.log("Received email:", email);
+
+  try {
+    const userExists = await UserModel.findOne({ email });
+    console.log("User from database:", userExists);
+
+    if (userExists) {
+      res.json({ exists: true });
+    } else {
+      res.json({ exists: false });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+
+const CheckUserExistence = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const userExists = await UserModel.findOne({ email });
+
+    if (userExists) {
+      res.json({ exists: true, user: userExists });
+    } else {
+      res.json({ exists: false });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
+};
+/// DELETE USER ////
+const DeleteUser = async (req, res) => {
+  res.json({ message: "The user is gone " });
+};
+/// DELETE USER ////
+const UpdateUser = async (req, res) => {
+  res.json({ message: "You changed the user" });
+};
+
+///-- EXPORTS --///
+export {
+  CreateTask,
+  GetTask,
+  UpdateTask,
+  DeleteTask,
+  CreateUser,
+  GetUser,
+  UpdateUser,
+  DeleteUser,
+  CheckUserExistence,
+};

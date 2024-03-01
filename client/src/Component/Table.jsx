@@ -1,6 +1,7 @@
 import axios from "axios";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import "./Table.css";
 
 import React, { useEffect, useState } from "react";
 
@@ -42,20 +43,17 @@ export default function Table({ DeleteTask, UpdatedTask }) {
         <div id="table-container" className="table-wrapper">
           <div className="table-title">
             <div className="row">
-              <div className="col-sm-6">
-                <h2>
-                  Manage <b>Tasks</b>
-                </h2>
+              <div className="col-sm-1 task--header">
+                <b>Tasks</b>
               </div>
-              <div className="col-sm-6">
+              <div className="col-sm-2">
                 <a
                   href="#"
-                  className="btn btn-success"
+                  className="task--add__btn"
                   data-bs-toggle="modal"
                   data-bs-target="#addEmployeeModal"
                 >
-                  <i className="material-icons">&#xE147;</i>{" "}
-                  <span>Add New Task</span>
+                  <span className="task--add__txt">Add Task</span>
                 </a>
               </div>
             </div>
@@ -111,7 +109,6 @@ export default function Table({ DeleteTask, UpdatedTask }) {
                           &#xE872;
                         </i>
                       </a>
-                      {/* <a className="delete" data-bas-toggle='modal' data-bs-target='#deleteEmployeeModal'><i className="material-icons" data-bs-toggle="tooltip" title="Delete">&#xE872;</i></a> */}
                     </td>
                   </tr>
                 );
