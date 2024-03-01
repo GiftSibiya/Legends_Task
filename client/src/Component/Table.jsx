@@ -77,7 +77,16 @@ export default function Table({ DeleteTask, UpdatedTask }) {
                     <td>{elem.taskName}</td>
                     <td>{elem.taskDesc}</td>
                     <td>{elem.taskStatus}</td>
-                    <td>{new Date(elem.taskDue).toLocaleDateString()}</td>
+                    <td>
+                      {new Date(elem.taskDue)
+                        .toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "2-digit",
+                          day: "2-digit",
+                        })
+                        .replace(/\//g, "-")}
+                    </td>
+
                     <td>
                       <a
                         href="#"
