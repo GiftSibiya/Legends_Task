@@ -9,6 +9,7 @@ import {
   GetUser,
   UpdateUser,
   DeleteUser,
+  CheckUserExistence,
 } from "../controllers/Controller.js";
 /// -- ///
 
@@ -25,5 +26,7 @@ routers.post("/CreateUser", CreateUser);
 routers.get("/GetUser", GetUser);
 routers.put("/UpdateUser", UpdateUser);
 routers.delete("/DeleteUser", DeleteUser);
+
+routers.post("/checkUser", CheckUserExistence);
 
 export default routers;

@@ -2,10 +2,11 @@ import React, { useRef, useState } from "react";
 import "./SignUp.css";
 import axios from "axios";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-// http://localhost:4000/api/CreateUser
 function SignUp() {
+  const history = useNavigate();
+
   /// HOOKS ///
 
   /// FUNCTIONS ///

@@ -119,16 +119,46 @@ const CreateUser = async (req, res) => {
 
 /// GET USERS ///
 const GetUser = async (req, res) => {
-  res.json({ message: "You found the lionbruv" });
+  const { email } = req.body;
+  console.log("Received email:", email);
+
+  try {
+    const userExists = await UserModel.findOne({ email });
+    console.log("User from database:", userExists);
+
+    if (userExists) {
+      res.json({ exists: true });
+    } else {
+      res.json({ exists: false });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
 };
 
-/// UPDATE USER ////
-const UpdateUser = async (req, res) => {
-  res.json({ message: "You Just updated the user" });
+const CheckUserExistence = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const userExists = await UserModel.findOne({ email });
+
+    if (userExists) {
+      res.json({ exists: true, user: userExists });
+    } else {
+      res.json({ exists: false });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
+  }
 };
 /// DELETE USER ////
 const DeleteUser = async (req, res) => {
   res.json({ message: "The user is gone " });
+};
+/// DELETE USER ////
+const UpdateUser = async (req, res) => {
+  res.json({ message: "You changed the user" });
 };
 
 ///-- EXPORTS --///
@@ -141,4 +171,5 @@ export {
   GetUser,
   UpdateUser,
   DeleteUser,
+  CheckUserExistence,
 };

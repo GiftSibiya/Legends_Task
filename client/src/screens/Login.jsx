@@ -6,25 +6,31 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   /// HOOKS ///
+  const history = useNavigate();
   const [email, setEmail] = useState("");
-  const [passwors, setPassword] = useState("");
+  const [password, setPassword] = useState("");
 
   /// FUNCTIONS ///
 
-  const navigate = useNavigate();
-
-  async function Submit(e) {
-    e.preventDefault();
-
+  async function checkUserExists(email) {
     try {
-      await axios.post("http://localhost:4000/api/CreateUser"),
-        {
-          fullname,
-          email,
-          password,
-        };
+      const res = await axios.post("http://localhost:4000/api/checkUser", {
+        email,
+      });
+
+      // Log the response data
+      console.log("Response data:", res.data);
+
+      if (res.data.exists) {
+        alert("User already exists.");
+        history("/home");
+      } else {
+        // User does not exist, maybe prompt for registration or other action
+        alert("User not found.");
+      }
     } catch (error) {
-      console.log(e);
+      alert("An error occurred");
+      console.log(error);
     }
   }
 
@@ -58,6 +64,7 @@ function Login() {
           </div>
           <input
             type="password"
+            name="password"
             className="Login--input"
             onChange={(e) => {
               setPassword(e.target.value);
@@ -68,7 +75,11 @@ function Login() {
 
         {/* BUTTONS */}
         <div className="con--btn">
-          <button type="submit" className="btn--black" onClick={Submit}>
+          <button
+            type="submit"
+            className="btn--black"
+            onClick={() => checkUserExists(email)}
+          >
             Log In
           </button>
 
