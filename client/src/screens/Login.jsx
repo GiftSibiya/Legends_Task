@@ -9,21 +9,27 @@ function Login() {
   const history = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passMatch, setPassMatch] = useState(false);
 
   /// FUNCTIONS ///
-
-  async function checkUserExists(email) {
+  async function checkUserExists(email, password) {
     try {
       const res = await axios.post("http://localhost:4000/api/checkUser", {
         email,
+        password,
       });
-
-      // Log the response data
-      console.log("Response data:", res.data);
-
       if (res.data.exists) {
-        alert("User already exists.");
-        history("/home");
+        // Access the user's password separately
+        const userPassword = res.data.user.password;
+
+        if (password.trim() === userPassword.trim()) {
+          console.log("Redirecting to home...");
+          setPassMatch(true); // Set state after confirming the password match
+          history("/home");
+        } else {
+          alert("Incorrect password, try again buddy");
+          setPassword("");
+        }
       } else {
         // User does not exist, maybe prompt for registration or other action
         alert("User not found.");
@@ -35,6 +41,7 @@ function Login() {
   }
 
   /// --///
+
   return (
     <div className="main">
       <div className="main--container">
@@ -78,7 +85,7 @@ function Login() {
           <button
             type="submit"
             className="btn--black"
-            onClick={() => checkUserExists(email)}
+            onClick={() => checkUserExists(email, password)}
           >
             Log In
           </button>
